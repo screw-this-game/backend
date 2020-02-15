@@ -3,6 +3,8 @@ package me.monotron.screwthisgame.backend.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.monotron.screwthisgame.backend.enums.ClientType;
+import me.monotron.screwthisgame.backend.model.Client;
+import me.monotron.screwthisgame.backend.repository.ClientRepository;
 import me.monotron.screwthisgame.backend.service.ClientService;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +15,18 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ClientServiceImpl implements ClientService {
 
-    // TODO add repository
+    ClientRepository clientRepository;
 
     @Override
     public String registerNewClient(ClientType type) {
         String clientId = generateClientId();
+        Client client = Client.builder()
+                .clientId(clientId)
+                .type(type)
+                .build();
 
-        // TODO save to db
+        clientRepository.save(client);
+
         return clientId;
     }
 
