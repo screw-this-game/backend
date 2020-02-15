@@ -1,6 +1,6 @@
 package me.monotron.screwthisgame.backend.service.impl;
 
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.monotron.screwthisgame.backend.enums.ClientType;
 import me.monotron.screwthisgame.backend.model.Client;
@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Service
 @Slf4j
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class ClientServiceImpl implements ClientService {
 
     ClientRepository clientRepository;
