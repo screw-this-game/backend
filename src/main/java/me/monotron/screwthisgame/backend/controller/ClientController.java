@@ -3,12 +3,11 @@ package me.monotron.screwthisgame.backend.controller;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.monotron.screwthisgame.backend.enums.ClientType;
-import me.monotron.screwthisgame.backend.model.ClientEffectsResponse;
+import me.monotron.screwthisgame.backend.model.response.ClientEffectsResponse;
 import me.monotron.screwthisgame.backend.model.response.ClientRegistrationResponse;
-import me.monotron.screwthisgame.backend.model.response.HealthCheckResponse;
+import me.monotron.screwthisgame.backend.model.response.GenericResponse;
 import me.monotron.screwthisgame.backend.service.ClientService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ValidationException;
@@ -17,7 +16,7 @@ import java.util.List;
 
 import static me.monotron.screwthisgame.backend.enums.RequestStatus.*;
 
-@Controller
+@RestController
 @Slf4j
 @AllArgsConstructor
 public class ClientController {
@@ -25,9 +24,9 @@ public class ClientController {
     ClientService clientService;
 
     @GetMapping(value = "/client/health")
-    public ResponseEntity<HealthCheckResponse> healthCheck() {
+    public ResponseEntity<GenericResponse> healthCheck() {
 
-        return ResponseEntity.ok(HealthCheckResponse.builder().status(SUCCESS).build());
+        return ResponseEntity.ok(GenericResponse.builder().status(SUCCESS).build());
     }
 
     @PostMapping(value = "/client/register")

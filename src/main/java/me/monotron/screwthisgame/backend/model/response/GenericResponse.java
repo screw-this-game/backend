@@ -6,7 +6,7 @@ import me.monotron.screwthisgame.backend.enums.RequestStatus;
 
 @Data
 @Builder
-public class HealthCheckResponse {
+public class GenericResponse {
 
     private RequestStatus status;
 }

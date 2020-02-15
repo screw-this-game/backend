@@ -11,6 +11,7 @@ import me.monotron.screwthisgame.backend.service.ClientService;
 import org.springframework.stereotype.Service;
 
 import javax.validation.ValidationException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -31,6 +32,8 @@ public class ClientServiceImpl implements ClientService {
         Client client = Client.builder()
                 .clientId(clientId)
                 .type(type)
+                .creationDate(LocalDateTime.now())
+                .lastUpdatedDate(LocalDateTime.now())
                 .build();
 
         clientRepository.save(client);
@@ -45,7 +48,9 @@ public class ClientServiceImpl implements ClientService {
             throw new ValidationException("The specified client does not exist.");
         }
 
-        return effectRepository.getAllByClientId(clientId).stream()
+        updateLastCheckedTimestamp(clientId);
+
+        return effectRepository.getByClientId(clientId).stream()
                 .map(Effect::getEffectName).collect(Collectors.toList());
     }
 
@@ -55,5 +60,11 @@ public class ClientServiceImpl implements ClientService {
 
     private boolean clientExists(String clientId) {
         return nonNull(clientRepository.getClientByClientId(clientId));
+    }
+
+    private void updateLastCheckedTimestamp(String clientId) {
+        Client client = clientRepository.getClientByClientId(clientId);
+        client.setLastUpdatedDate(LocalDateTime.now());
+        clientRepository.save(client);
     }
 }

@@ -1,4 +1,4 @@
-package me.monotron.screwthisgame.backend.model;
+package me.monotron.screwthisgame.backend.model.response;
 
 import lombok.Builder;
 import lombok.Data;
