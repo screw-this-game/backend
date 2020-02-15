@@ -50,7 +50,7 @@ public class ClientServiceImpl implements ClientService {
 
         updateLastCheckedTimestamp(clientId);
 
-        return effectRepository.getByClientId(clientId).stream()
+        return effectRepository.getAllByClientId(clientId).stream()
                 .map(Effect::getEffectName).collect(Collectors.toList());
     }
 
@@ -59,11 +59,11 @@ public class ClientServiceImpl implements ClientService {
     }
 
     private boolean clientExists(String clientId) {
-        return nonNull(clientRepository.getClientByClientId(clientId));
+        return nonNull(clientRepository.getFirstByClientId(clientId));
     }
 
     private void updateLastCheckedTimestamp(String clientId) {
-        Client client = clientRepository.getClientByClientId(clientId);
+        Client client = clientRepository.getFirstByClientId(clientId);
         client.setLastUpdatedDate(LocalDateTime.now());
         clientRepository.save(client);
     }

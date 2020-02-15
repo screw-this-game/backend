@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface EffectRepository extends MongoRepository<Effect, String> {
 
-    List<Effect> getByClientId(String clientId);
+    List<Effect> getAllByClientId(String clientId);
 }

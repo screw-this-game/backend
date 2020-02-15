@@ -40,11 +40,11 @@ public class FrontendServiceImpl implements FrontendService {
     }
 
     private boolean clientExists(String clientId) {
-        return nonNull(clientRepository.getClientByClientId(clientId));
+        return nonNull(clientRepository.getFirstByClientId(clientId));
     }
 
     private void updateLastCheckedTimestamp(String clientId) {
-        Client client = clientRepository.getClientByClientId(clientId);
+        Client client = clientRepository.getFirstByClientId(clientId);
         client.setLastUpdatedDate(LocalDateTime.now());
         clientRepository.save(client);
     }
