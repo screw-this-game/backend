@@ -1,10 +1,8 @@
 package me.monotron.screwthisgame.backend.controller;
 
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.monotron.screwthisgame.backend.enums.ClientType;
-import me.monotron.screwthisgame.backend.enums.RequestStatus;
 import me.monotron.screwthisgame.backend.model.ClientRegistrationResponse;
 import me.monotron.screwthisgame.backend.model.HealthCheckResponse;
 import me.monotron.screwthisgame.backend.service.ClientService;
