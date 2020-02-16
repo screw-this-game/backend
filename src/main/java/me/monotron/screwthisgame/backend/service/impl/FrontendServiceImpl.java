@@ -8,6 +8,7 @@ import me.monotron.screwthisgame.backend.repository.ClientRepository;
 import me.monotron.screwthisgame.backend.repository.FrontendRepository;
 import me.monotron.screwthisgame.backend.service.FrontendService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.validation.ValidationException;
 import java.time.LocalDateTime;
@@ -18,6 +19,7 @@ import static java.util.Objects.nonNull;
 @Service
 @Slf4j
 @AllArgsConstructor
+@CrossOrigin(origins = "*")
 public class FrontendServiceImpl implements FrontendService {
 
     FrontendRepository frontendRepository;
