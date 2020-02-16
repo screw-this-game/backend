@@ -15,6 +15,7 @@ public class TwilioController {
 
     @PostMapping(value = "/twilio/receive")
     public ResponseEntity<String> receiveMessage(@RequestBody String body) {
-
+        log.info(body);
+        return ResponseEntity.ok("");
     }
 }
