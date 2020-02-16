@@ -14,6 +14,7 @@ import javax.validation.ValidationException;
 @RestController
 @Slf4j
 @AllArgsConstructor
+@CrossOrigin(origins = {"http://localhost:3000", "https://screw-this-game.netlify.com"})
 public class FrontendController {
 
     FrontendService frontendService;

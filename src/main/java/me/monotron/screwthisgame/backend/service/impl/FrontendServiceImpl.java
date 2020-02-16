@@ -19,7 +19,6 @@ import static java.util.Objects.nonNull;
 @Service
 @Slf4j
 @AllArgsConstructor
-@CrossOrigin(origins = "*")
 public class FrontendServiceImpl implements FrontendService {
 
     FrontendRepository frontendRepository;
