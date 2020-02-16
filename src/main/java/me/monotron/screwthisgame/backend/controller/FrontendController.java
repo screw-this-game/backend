@@ -34,6 +34,8 @@ public class FrontendController {
                     .build());
         }
 
+        log.info("Added effect {} for client ID {}", effectName, clientId);
+
         return ResponseEntity.ok(GenericResponse.builder()
                 .status(RequestStatus.SUCCESS)
                 .build());
