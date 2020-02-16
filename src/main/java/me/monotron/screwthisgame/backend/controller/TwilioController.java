@@ -31,9 +31,10 @@ public class TwilioController {
                                     .build())
                             .build())
                     .build().toXml();
+            return ResponseEntity.ok(response);
         }
 
-        String twilioId = args[0];
+        String twilioId = args[0].toLowerCase();
         String effectName = args[1];
 
         String response = new MessagingResponse.Builder()
