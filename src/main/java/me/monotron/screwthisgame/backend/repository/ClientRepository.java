@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface ClientRepository extends MongoRepository<Client, String> {
 
     Client getFirstByClientId(String clientId);
+    Client getFirstByTwilioId(String twilioId);
 }
