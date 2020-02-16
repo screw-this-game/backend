@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.ValidationException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static java.util.Objects.nonNull;
 
@@ -37,6 +38,11 @@ public class FrontendServiceImpl implements FrontendService {
                 .build();
 
         frontendRepository.save(effect);
+    }
+
+    @Override
+    public List<Client> getClients() {
+        return clientRepository.findAll();
     }
 
     private boolean clientExists(String clientId) {

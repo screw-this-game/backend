@@ -3,6 +3,7 @@ package me.monotron.screwthisgame.backend.controller;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.monotron.screwthisgame.backend.enums.ClientType;
+import me.monotron.screwthisgame.backend.model.request.ClientRegistrationRequest;
 import me.monotron.screwthisgame.backend.model.response.ClientEffectsResponse;
 import me.monotron.screwthisgame.backend.model.response.ClientRegistrationResponse;
 import me.monotron.screwthisgame.backend.model.response.GenericResponse;
@@ -31,7 +32,8 @@ public class ClientController {
 
     @PostMapping(value = "/client/register")
     public ResponseEntity<ClientRegistrationResponse> registerClient(
-        @RequestHeader("X-Client-Type") String clientType
+        @RequestHeader("X-Client-Type") String clientType,
+        @RequestBody ClientRegistrationRequest requestBody
     ) {
 
         ClientType type;
@@ -44,9 +46,10 @@ public class ClientController {
 
         log.info("Creating a new client, game = {}", type);
 
-        String clientId = clientService.registerNewClient(type);
+        List<String> capabilities = requestBody.getCapabilities();
+        String clientId = clientService.registerNewClient(type, capabilities);
 
-        return ResponseEntity.ok().body(ClientRegistrationResponse.success(clientId));
+        return ResponseEntity.ok().body(ClientRegistrationResponse.success(clientId, capabilities));
     }
 
     @GetMapping(value = "/client/{clientId}/effects")

@@ -3,13 +3,11 @@ package me.monotron.screwthisgame.backend.controller;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.monotron.screwthisgame.backend.enums.RequestStatus;
+import me.monotron.screwthisgame.backend.model.response.FrontendClientsResponse;
 import me.monotron.screwthisgame.backend.model.response.GenericResponse;
 import me.monotron.screwthisgame.backend.service.FrontendService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ValidationException;
 
@@ -37,6 +35,14 @@ public class FrontendController {
 
         return ResponseEntity.ok(GenericResponse.builder()
                 .status(RequestStatus.SUCCESS)
+                .build());
+    }
+
+    @GetMapping(value = "/frontend/clients")
+    public ResponseEntity<FrontendClientsResponse> getClients() {
+
+        return ResponseEntity.ok(FrontendClientsResponse.builder()
+                .clients(frontendService.getClients())
                 .build());
     }
 }

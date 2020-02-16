@@ -5,7 +5,7 @@ import me.monotron.screwthisgame.backend.enums.ClientType;
 import java.util.List;
 
 public interface ClientService {
-    String registerNewClient(ClientType type);
+    String registerNewClient(ClientType type, List<String> capabilities);
 
     List<String> getEffects(String clientId);
 }

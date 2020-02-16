@@ -27,11 +27,12 @@ public class ClientServiceImpl implements ClientService {
     EffectRepository effectRepository;
 
     @Override
-    public String registerNewClient(ClientType type) {
+    public String registerNewClient(ClientType type, List<String> capabilities) {
         String clientId = generateClientId();
         Client client = Client.builder()
                 .clientId(clientId)
                 .type(type)
+                .capabilities(capabilities)
                 .creationDate(LocalDateTime.now())
                 .lastUpdatedDate(LocalDateTime.now())
                 .build();
