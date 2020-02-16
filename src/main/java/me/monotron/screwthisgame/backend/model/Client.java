@@ -19,6 +19,7 @@ public class Client {
 
     private ClientType type;
     private String clientId;
+    private String twilioId;
     private List<String> capabilities;
     private LocalDateTime creationDate;
     private LocalDateTime lastUpdatedDate;

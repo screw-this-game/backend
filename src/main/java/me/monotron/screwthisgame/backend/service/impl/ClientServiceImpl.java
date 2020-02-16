@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.validation.ValidationException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -31,6 +32,10 @@ public class ClientServiceImpl implements ClientService {
         String clientId = generateClientId();
         Client client = Client.builder()
                 .clientId(clientId)
+                .twilioId(new Random().ints(97, 123)
+                        .limit(6)
+                        .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                        .toString())
                 .type(type)
                 .capabilities(capabilities)
                 .creationDate(LocalDateTime.now())
