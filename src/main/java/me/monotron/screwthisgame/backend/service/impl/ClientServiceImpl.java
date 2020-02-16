@@ -50,8 +50,10 @@ public class ClientServiceImpl implements ClientService {
 
         updateLastCheckedTimestamp(clientId);
 
-        return effectRepository.getAllByClientId(clientId).stream()
-                .map(Effect::getEffectName).collect(Collectors.toList());
+        List<Effect> effects = effectRepository.getAllByClientId(clientId);
+        effects.forEach(effect -> effectRepository.delete(effect));
+
+        return effects.stream().map(Effect::getEffectName).collect(Collectors.toList());
     }
 
     private String generateClientId() {
